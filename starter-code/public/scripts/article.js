@@ -1,6 +1,6 @@
 ((module)=>{
 'use strict';
-window.myGlobal ='';
+window.myGlobal
 
 // REVIEW: Check out all of the functions that we've cleaned up with arrow function syntax.
 
@@ -41,10 +41,11 @@ Article.loadAll = rows => {
   // is the transformation of one collection into another. Remember that we can set variables equal to the result
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
-
-Article.all = rows.map(=>ele{
+//**********************************************//
+Article.all = rows.map(ele=>{
   return new Article{ele}
 });
+//************************************************//
   /* OLD forEach():
   rawData.forEach(function(ele) {
   Article.all.push(new Article(ele));
@@ -63,19 +64,19 @@ Article.fetchAll = callback => {
   )
 };
 
-// TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
+// TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.**done**
 Article.numWordsAll = () => {
-  return Article.all.map( article => {return article.body.split('').length}).reduce(acc,num) => {return acc + num;});
+  return Article.all.map( article => {return article.body.split('').length}).reduce(acc,num) => {return acc + num;}0);
 };
 
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
-Article.allAuthors = () => {
-  return Article.all.map().reduce();
-};
+Article.allAuthors = () => {article.author.filter(=>(author,index,allAuthors){return allAuthors.indexOf(author) == index;};
 
-Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {
+Article.numWordsByAuthor = () => { Article.all.filter(words => (author)
+if( author == article.author)
+{return article.body });
+
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
@@ -131,4 +132,4 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
 };
-}());
+}(window));
