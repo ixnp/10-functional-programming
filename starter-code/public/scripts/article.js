@@ -1,9 +1,11 @@
+((module)=>{
 'use strict';
+window.myGlobal ='';
 
 // REVIEW: Check out all of the functions that we've cleaned up with arrow function syntax.
 
-// TODO: Wrap the entire contents of this file in an IIFE.
-// Set a parameter in the anonymous function that we immediately call called module.
+// TODO: Wrap the entire contents of this file in an IIFE. **done**
+// Set a parameter in the anonymous function that we immediately call called module. *done*
 // Then pass in the global browser object - "window" - as an argument to our IIFE.
 function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
@@ -40,6 +42,9 @@ Article.loadAll = rows => {
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
 
+Article.all = rows.map(=>ele{
+  return new Article{ele}
+});
   /* OLD forEach():
   rawData.forEach(function(ele) {
   Article.all.push(new Article(ele));
@@ -60,7 +65,7 @@ Article.fetchAll = callback => {
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
-  return Article.all.map().reduce()
+  return Article.all.map( article => {return article.body.split('').length}).reduce(acc,num) => {return acc + num;});
 };
 
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
@@ -126,3 +131,4 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
 };
+}());
