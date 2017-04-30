@@ -65,7 +65,7 @@ Article.fetchAll = callback => {
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
-  return Article.all.map( article => {return article.body.split('').length}).reduce((acc,num) => {return acc + num;});
+  return Article.all.map( article => {return article.body.split(' ').length}).reduce((acc,num) => {return acc + num;});
 };
 
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
@@ -82,11 +82,6 @@ Article.allAuthors = () => {
     },[]);
 };
 
-arr.filter( function( item, index, inputArray ) {
-           return inputArray.indexOf(item) == index;
-    });
-
-
 Article.numWordsByAuthor = () => {
   return Article.allAuthors().map(author => {
     // TODO: Transform each author string into an object with properties for
@@ -95,8 +90,17 @@ Article.numWordsByAuthor = () => {
     // HINT: This .map should be setup to return an object literal with two properties.
     // The first property should be pretty straightforward, but you will need to chain
     // some combination of filter, map, and reduce to get the value for the second
-    // property.
-
+    // property. (user a filter to specify 1 author)
+    return {
+      name :  author,
+      totalWords : Article.all.filter(article => {
+        return article.author == author;
+      }).map(article => {
+        return article.body.split(' ').length
+      }).reduce((total, count) => {
+        return total + count
+      }, 0);
+    }
   })
 };
 
