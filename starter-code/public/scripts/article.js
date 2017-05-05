@@ -1,6 +1,7 @@
-((module)=>{
 'use strict';
-window.myGlobal
+((module)=>{
+
+
 
 // REVIEW: Check out all of the functions that we've cleaned up with arrow function syntax.
 
@@ -42,9 +43,7 @@ Article.loadAll = rows => {
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
 //**********************************************//
-Article.all = rows.map(ele=>{
-  return new Article{ele}
-});
+Article.all = rows.map( ele=> new Article(ele));
 //************************************************//
   /* OLD forEach():
   rawData.forEach(function(ele) {
@@ -66,16 +65,24 @@ Article.fetchAll = callback => {
 
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.**done**
 Article.numWordsAll = () => {
-  return Article.all.map( article => {return article.body.split('').length}).reduce(acc,num) => {return acc + num;}0);
+  return Article.numWordsAll.map( article => article.body.match(/|b|w+g).length)
+  .reduce((a,b)=> a + b)
 };
-
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
 Article.allAuthors = () => {article.author.filter(=>(author,index,allAuthors){return allAuthors.indexOf(author) == index;};
 
-Article.numWordsByAuthor = () => { Article.all.filter(words => (author)
-if( author == article.author)
-{return article.body });
+Article.numWordsByAuthor = () => {
+  return Articles.allAuthors.map{author =>
+    return {
+      name: author,
+      numWords: Articles.all.filter(a=> a.author === author)
+      .map(a=> a.body.match(/\b\w+/g).length)
+      .reduce((a,b)=> a+b)
+    }
+  }
+}
+
 
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
@@ -132,4 +139,6 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
 };
+
+  module.articleView = articleView;
 }(window));
