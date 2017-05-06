@@ -1,9 +1,12 @@
 'use strict';
+((module)=>{
+
+
 
 // REVIEW: Check out all of the functions that we've cleaned up with arrow function syntax.
 
-// TODO: Wrap the entire contents of this file in an IIFE.
-// Set a parameter in the anonymous function that we immediately call called module.
+// TODO: Wrap the entire contents of this file in an IIFE. **done**
+// Set a parameter in the anonymous function that we immediately call called module. *done*
 // Then pass in the global browser object - "window" - as an argument to our IIFE.
 function Article(rawDataObj) {
   /* REVIEW: In lab 8, we explored a lot of new functionality going on here. Let's re-examine
@@ -39,7 +42,9 @@ Article.loadAll = rows => {
   // is the transformation of one collection into another. Remember that we can set variables equal to the result
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
-
+//**********************************************//
+Article.all = rows.map( ele=> new Article(ele));
+//************************************************//
   /* OLD forEach():
   rawData.forEach(function(ele) {
   Article.all.push(new Article(ele));
@@ -58,19 +63,27 @@ Article.fetchAll = callback => {
   )
 };
 
-// TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
+// TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.**done**
 Article.numWordsAll = () => {
-  return Article.all.map().reduce()
+  return Article.numWordsAll.map( article => article.body.match(/|b|w+g).length)
+  .reduce((a,b)=> a + b)
 };
-
 // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names. You will
 // probably need to use the optional accumulator argument in your reduce call.
-Article.allAuthors = () => {
-  return Article.all.map().reduce();
-};
+Article.allAuthors = () => {article.author.filter(=>(author,index,allAuthors){return allAuthors.indexOf(author) == index;};
 
 Article.numWordsByAuthor = () => {
-  return Article.allAuthors().map(author => {
+  return Articles.allAuthors.map{author =>
+    return {
+      name: author,
+      numWords: Articles.all.filter(a=> a.author === author)
+      .map(a=> a.body.match(/\b\w+/g).length)
+      .reduce((a,b)=> a+b)
+    }
+  }
+}
+
+
     // TODO: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
@@ -126,3 +139,6 @@ Article.prototype.updateRecord = function(callback) {
   .then(console.log)
   .then(callback);
 };
+
+  module.articleView = articleView;
+}(window));
