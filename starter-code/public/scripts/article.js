@@ -42,7 +42,7 @@ Article.loadAll = rows => {
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
 
-Article.all = rows.map(=>ele{
+Article.all = rows.map(=> ele {
   return new Article{ele}
 });
   /* OLD forEach():
